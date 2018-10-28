@@ -97,8 +97,9 @@ class TokenController extends Controller
      * @param string $key
      * @return array|string
      */
-    public function checkToken($jwt, $key = 'secret')
+    public function checkToken($key = 'secret')
     {
+        $jwt = $this->getToken();
         $token = explode('.', $jwt);
         if (count($token) != 3)
             return 'token invalid';
@@ -140,6 +141,7 @@ class TokenController extends Controller
      */
     public function getUserId()
     {
+        $this->checkToken();
         return $this->userId;
     }
 

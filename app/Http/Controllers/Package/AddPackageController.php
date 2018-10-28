@@ -39,7 +39,14 @@ class AddPackageController extends Controller
      */
     protected function create(array $data)
     {
-        return Package::create($data);
+//        return Package::create($data);
+        $package = new Package();
+        $package->description = $data['description'];
+        $package->cover = $data['cover'];
+        $package->type = $data['type'];
+        $package->card_num = $data['card_num'];
+        $package->user_id = $data['user_id'];
+        $package->save();
     }
 
     /**
@@ -50,8 +57,9 @@ class AddPackageController extends Controller
     public function addPackage(Request $request)
     {
         if ($request->isMethod('post')) {
-//            $tokenObject = new Token();
-////            $userId = $tokenObject->getUserId();
+            $tokenObject = new Token();
+            $userId = $tokenObject->getUserId();
+
             $validator = $this->validator($request->all());
             if ($validator->fails()) {
                 $errors = $validator->errors()->first();
@@ -67,25 +75,23 @@ class AddPackageController extends Controller
                     'msg' => $errors
                 ]);
             }
-//            $data['user_id'] = $userId;
-            $data['user_id'] = 1;
+            $data['user_id'] = $userId;
+//            $data['user_id'] = 1;
             $data['description'] = request('description');
             $data['cover'] = request('cover');
             $data['type'] = request('type');
             $data['card_num'] = 0;
 
             $ret = $this->create($data);
-            if ($ret) {
+            if (!$ret) {
                 return response()->json([
                     'code'  => 2000,
                     'data'  => [
-                        'id'    => $ret->getAttribute('id'),
-                        'description'    => $ret->getAttribute('description'),
-                        'cover'    => $ret->getAttribute('cover'),
-                        'type'    => $ret->getAttribute('type'),
-                        'userId'    => $ret->getAttribute('user_id'),
-                        'createdAt'    => strtotime($ret->getAttribute('created_at')),
-                        'updatedAt'    => strtotime($ret->getAttribute('updated_at'))
+                        'userId'    => $data['user_id'],
+                        'description'    => $data['description'],
+                        'cover'    => $data['cover'],
+                        'type'    => $data['type'],
+                        'cardNum'   => $data['card_num']
                     ]
                 ]);
             } else {
