@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Package;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Package;
+use App\Http\Controllers\Auth\TokenController as Token;
 
 class FindPackageController extends Controller
 {
     // 用户查找自己的所有卡片
     public function findPackage() {
-        $user_id = 1;
-        $packages = Package::where('user_id', $user_id)->get();
+//        $tokenObject = new Token();
+//        $userId = $tokenObject->getUserId();
+        $userId = 3;
+        $packages = Package::where('user_id', $userId)->get();
 //        var_dump($data);
         $data = array();
         for ($i = 0; $i < count($packages); ++$i) {

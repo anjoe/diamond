@@ -31,4 +31,4 @@ Route::post('package/delete', 'Package\RemovePackageController@removePackage')->
 // 用户更新卡包
 Route::post('package/update', 'Package\ModifyPackageController@modifyPackage')->middleware('auth');
 // 用户查找自己的所有卡包信息
-Route::post('package/find', 'Package\FindPackageController@findPackage')->middleware('auth');
+Route::get('package/find', 'Package\FindPackageController@findPackage')->middleware('auth');
