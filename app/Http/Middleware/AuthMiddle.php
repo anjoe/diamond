@@ -24,13 +24,14 @@ class AuthMiddle
                 'msg'   => '没有登录'
             ]);
         }
+        echo $token;
         $ret = $tokenObject->checkToken($token);
-        if (isset($ret) && $ret == 'token invalid') {
+        if (isset($ret) && $ret === 'token invalid') {
             return response()->json([
                 'code'  => 4001,
                 'msg'   => 'token不合法'
             ]);
-        } else if (isset($ret) && $ret == 'timeout') {
+        } else if (isset($ret) && $ret === 'timeout') {
             return response()->json([
                 'code'  => 4002,
                 'msg'   => 'token过期'

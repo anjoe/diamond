@@ -27,7 +27,7 @@ class AddPackageController extends Controller
         return Validator::make($data, [
             'description' => 'required|string',
             'cover' => 'required|string',
-            'type' => 'required|numeric',
+            'type' => 'required|string',
         ], $message);
     }
 

@@ -25,10 +25,10 @@ Route::post('user/login', 'Auth\LoginController@login');
 Route::post('/upload', 'Upload\UploadPictureController@uploadPicture');
 
 // 用户添加卡包
-Route::post('package/add', 'Package\AddPackageController@addPackage');
+Route::post('package/add', 'Package\AddPackageController@addPackage')->middleware('auth');
 // 用户删除卡包
 Route::post('package/delete', 'Package\RemovePackageController@removePackage')->middleware('auth');
 // 用户更新卡包
 Route::post('package/update', 'Package\ModifyPackageController@modifyPackage')->middleware('auth');
 // 用户查找自己的所有卡包信息
-Route::get('package/find', 'Package\FindPackageController@findPackage')->middleware('auth');
+Route::post('package/find', 'Package\FindPackageController@findPackage')->middleware('auth');
