@@ -22,7 +22,7 @@ Route::post('user/register', 'Auth\RegisterController@register');
 // 用户登录
 Route::post('user/login', 'Auth\LoginController@login');
 // 用户上传图片
-Route::post('/upload', 'Upload\UploadPictureController@uploadPicture');
+Route::post('upload', 'Upload\UploadPictureController@uploadPicture');
 
 // 用户添加卡包
 Route::post('package/add', 'Package\AddPackageController@addPackage')->middleware('auth');

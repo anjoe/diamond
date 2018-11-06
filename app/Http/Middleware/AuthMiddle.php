@@ -24,7 +24,6 @@ class AuthMiddle
                 'msg'   => '没有登录'
             ]);
         }
-        echo $token;
         $ret = $tokenObject->checkToken($token);
         if (isset($ret) && $ret === 'token invalid') {
             return response()->json([

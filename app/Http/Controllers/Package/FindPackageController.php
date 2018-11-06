@@ -19,8 +19,8 @@ class FindPackageController extends Controller
             $data = array();
             for ($i = 0; $i < count($packages); ++$i) {
                 $data[$i]['id'] = $packages[$i]->getAttribute('id');
+                $data[$i]['description'] = $packages[$i]->getAttribute('description');
                 $data[$i]['userId'] = $packages[$i]->getAttribute('user_id');
-                $data[$i]['name'] = $packages[$i]->getAttribute('name');
                 $data[$i]['cover'] = $packages[$i]->getAttribute('cover');
                 $data[$i]['cardNum'] = $packages[$i]->getAttribute('card_num');
                 $data[$i]['type'] = $packages[$i]->getAttribute('type');
@@ -31,6 +31,7 @@ class FindPackageController extends Controller
                 'code'  => 2000,
                 'data'  => $data
             ]);
+//            return response()->json($data);
         }
 
     }

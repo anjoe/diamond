@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Redis;
 
 class SendMessageController extends Controller
 {
+
+    /**
+     * SendMessageController constructor.
+     */
+    public function __construct()
+    {
+        $this->apikey = config('yunpian.apiKey');
+    }
+
     /**
      * Verification Code
      * @var integer
@@ -18,8 +27,7 @@ class SendMessageController extends Controller
     /**
      * @var string
      */
-//  private $apikey = "48809fdf8978aee119b70a4143471973";
-    private $apikey = "147581afd06f6415d2ea1f08264bdb84";
+    private $apikey
 
     /**
      *
@@ -124,5 +132,4 @@ class SendMessageController extends Controller
     {
         return $this->text = "【方片记忆科技公司】您的验证码是".$this->code."。如非本人操作，请忽略本短信";
     }
-
 }
