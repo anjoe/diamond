@@ -27,7 +27,7 @@ class SendMessageController extends Controller
     /**
      * @var string
      */
-    private $apikey
+    private $apikey;
 
     /**
      *
